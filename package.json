@@ -17,7 +17,7 @@
     "lint": "./node_modules/.bin/eslint .",
     "prepublish": "in-publish && npm run build || not-in-publish",
     "start": "./node_modules/.bin/webpack-dev-server",
-    "tap": "./node_modules/.bin/tap ./test/{unit,integration}/*.js",
+    "tap": "./node_modules/.bin/tap ./test/{unit,integration}/*.js --jobs=4",
     "tap:unit": "./node_modules/.bin/tap ./test/unit/*.js",
     "tap:integration": "./node_modules/.bin/tap ./test/integration/*.js",
     "test": "npm run lint && npm run tap",
