@@ -471,7 +471,7 @@ class RenderedTarget extends Target {
             this.isStage &&
             this.worldStage
         ) {
-            this.setWorldEffects();
+            document.body.style = null;
         }
         if (this.renderer) {
             this.renderer.updateDrawableProperties(this.drawableID, this.effects);
@@ -1200,7 +1200,7 @@ class RenderedTarget extends Target {
             styles.filters.push(`hue-rotate(${this.effects.color % 360}deg)`);
         }
 
-        if (this.effects.opacity !== 0) {
+        if (this.effects.ghost !== 0) {
             styles.opacity = (100 - this.effects.ghost) / 100;
         }
 
@@ -1209,7 +1209,13 @@ class RenderedTarget extends Target {
         }
 
         document.body.style.filter = styles.filters.join(' ');
-        if (styles.opacity) document.body.style.opacity = styles.opacity;
+        if (typeof styles.opacity !== 'undefined') {
+            document.body.style.opacity = styles.opacity;
+            document.body.style.backgroundImage = 'url(https://assets.scratch.mit.edu/62ed6f412aae07a575faa51451009168.svg)';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundSize = '300px';
+        }
     }
 
     stopIfEffectsActive () {
